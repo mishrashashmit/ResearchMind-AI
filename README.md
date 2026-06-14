@@ -185,8 +185,11 @@ GEMINI_API_KEY=your_api_key_here
 
 ---
 
-## 🚀 Run the Application
+## 🚀 How to Run ResearchMind AI
 
+```text
+1-Run via Web App(Streamlit)
+```
 ```bash
 streamlit run app/streamlit_app.py
 ```
@@ -198,7 +201,26 @@ http://localhost:8501
 ```
 
 ---
+```text
+1-Run via CLI
+```
+```bash
+python main.py
+```
+```What you will see -
+============================================================
+ResearchMind AI - Multi-Agent Research Assistant
+============================================================
+researchmind - INFO - ResearchAnalyzer initialized
 
+🔬 ResearchMind CLI
+------------------------------------------------------------
+1. Analyze research topic
+2. Exit
+------------------------------------------------------------
+Select option (1-2):
+
+```
 ## 📸 Demo
 
 Add screenshots here:

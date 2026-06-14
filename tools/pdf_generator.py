@@ -198,6 +198,80 @@ def generate_research_report(topic, papers, emerging_trends, filename="report.pd
     return str(output_path)
 
 
+
+def generate_detailed_analysis_report(
+    topic,
+    papers,
+    emerging_trends,
+    filename="detailed_report.pdf"
+):
+    """
+    Generates a detailed research report.
+
+    Currently extends the standard report generation.
+    You can later customize this with additional sections,
+    paper-by-paper analysis, statistics, charts, etc.
+    """
+
+    output_path = Path(Config.REPORTS_DIR) / filename
+    doc = create_pdf_document(output_path, "Detailed Research Report")
+    styles = get_custom_styles()
+
+    story = []
+
+    # Title
+    story.append(Paragraph("ResearchMind AI - Detailed Analysis Report", styles["title"]))
+    story.append(Spacer(1, 0.2 * inch))
+
+    # Metadata
+    story.append(Paragraph(f"<b>Topic:</b> {topic}", styles["body"]))
+    story.append(Paragraph(f"<b>Generated:</b> {datetime.now()}", styles["body"]))
+    story.append(Spacer(1, 0.2 * inch))
+
+    # Trends Section
+    story.append(Paragraph("Emerging Trends", styles["heading1"]))
+
+    if emerging_trends:
+        for trend in emerging_trends:
+            story.append(Paragraph(f"• {trend}", styles["body"]))
+    else:
+        story.append(Paragraph("No trends identified.", styles["body"]))
+
+    story.append(Spacer(1, 0.2 * inch))
+
+    # Detailed Paper Analysis
+    story.append(Paragraph("Paper Analysis", styles["heading1"]))
+
+    for idx, paper in enumerate(papers, start=1):
+        story.append(
+            Paragraph(
+                f"{idx}. {paper.get('title', 'Untitled')}",
+                styles["heading2"]
+            )
+        )
+
+        story.append(
+            Paragraph(
+                f"<b>Summary:</b> {paper.get('summary', 'N/A')}",
+                styles["body"]
+            )
+        )
+
+        story.append(
+            Paragraph(
+                f"<b>Topics:</b> {', '.join(paper.get('topics', []))}",
+                styles["body"]
+            )
+        )
+
+        story.append(Spacer(1, 0.1 * inch))
+
+    doc.build(story)
+
+    return str(output_path)
+
+
+
 # =========================
 # TEST
 # =========================
